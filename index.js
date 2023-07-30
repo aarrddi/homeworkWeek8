@@ -1,8 +1,15 @@
-var express = require ('express');
-var app = express()
+const express = require ('express');
+const app = express();
+const pool = require('./queries.js');
 
-app.get('/',(req,res)=>{
-    res.send('hello world');
+const actor = require('./routes/dvdrental.js');
+
+pool.connect(()=>{
+    console.log('database connected')
 });
+
+app.use('/actor',actor);
+
+
 
 app.listen(3000);
